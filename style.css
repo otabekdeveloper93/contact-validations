@@ -1,0 +1,367 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    position: relative;
+}
+.section{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(241,242,250);
+}
+.pozition-fixed{
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    background-color: #253053;
+}
+.add_contact_section{
+    margin-left: 25%;
+}
+.new_div{
+    width: 100%;
+    height: 150px;
+    position: relative;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+.new_div_item{
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5%;
+}
+.user_icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)
+}
+.user_icon svg{
+    width: 40px;
+    height: 40px;
+}
+.user-name{
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.new-employe{
+    font-size: 20px;
+    font-weight: 500;
+}
+.form-design{
+    font-size: 14px;
+    font-weight: 500;
+    color: #777;
+}
+.MuiSvgIcon-root {
+    font-size: 2.1875rem;
+    color: #3c44b1;
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    font-size: 1.5rem;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    flex-shrink: 0;
+    user-select: none;
+}
+.div-form-box{
+    display: block;
+    padding-bottom: 5px;
+    max-height: 500px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    border-radius: 4px;
+    color: rgba(0, 0, 0, 0.87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    background-color: #fff;
+    margin: 40px;
+    -webkit-font-smoothing: antialiased;
+}
+.div-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    padding: 25px;
+    margin: 0 20px;
+}
+.box-search{
+    border: 1px solid rgba(17, 17, 17, 0.453);
+    padding: 5px 20px;
+    padding-left: 40px;
+    border-radius: 5px;
+    display: inline-flex;
+    position: relative;
+    min-width: 0;
+    width: 600px;
+    height: 55px;
+}
+.search_contact_box button{
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    color: #3c44b1;
+    font-weight: bold;
+}
+.box-search label{
+    position: absolute;
+    transform: translate(-40px, -19px) scale(0.75);
+    background-color: #fff;
+}
+.box-search .bx-search{
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    font-size: 24px;
+}
+.box-search input{
+    border: none;
+    width: 100%;
+}
+.box-search input:focus{
+    outline: none;
+}
+.add_modal .add_button{
+    padding: 10px 20px;
+    border: 1px solid #3c44b1;
+    font-size: 16px;
+    color: #3c44b1;
+    border-radius: 5px;
+}
+.add_button i{
+    position: relative;
+    top: 3px;
+    font-size: 20px;
+}
+.sort_box{
+    padding: 15px 30px;
+    margin-top: 10px;
+    margin: 0 30px;
+    background-color: rgb(220, 220, 240);
+    display: flex;
+    justify-content: space-between;
+}
+.indicator_page{
+    margin-top: 5px;
+    text-align: end;
+    padding: 0 40px;
+}
+.indicator_page span{
+    padding: 0 10px;
+}
+
+
+/* modal section */
+
+.modal-box{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 10, 10, 0.5);
+    z-index: 1;
+
+}
+.modall{
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 1000px;
+    border-radius: 5px;
+    background-color: #fff;
+    z-index: 10;
+}
+.modal-header h4{
+    font-size: 20px;
+    margin: 15px;
+}
+.modal-header button{
+    background-color: rgb(255, 220, 220);
+    color: #f00;
+    border: none;
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    font-size: 30px;
+    border-radius: 4px;
+}
+
+.formbox{
+    padding: 25px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+
+.bigbox{
+    width: 100%;
+    display: flex;
+}
+.bx-box0{
+    width: 50%;
+}
+.input_box{
+    border: 1px solid rgba(17, 17, 17, 0.453);
+    padding: 5px 20px;
+    padding-left: 10px;
+    border-radius: 5px;
+    display: inline-flex;
+    position: relative;
+    width: 80%;
+    height: 55px;
+}
+.input_box input{
+    border: none;
+    margin-left: 10px;
+    width: 100%;
+}
+.checxkbox{
+    display: inline-flex;
+    vertical-align: middle;
+}
+.div-checkbox input{
+   width: 20px;
+   height: 20px;
+   margin-right: 10px;
+}
+.submit_btn{
+    margin: 20px 10px;
+    width: 100px;
+    height: 40px;
+    background-color: #3c44b1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+.reset_btn{
+    width: 100px;
+    height: 40px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 5px;
+}
+.submit_btn:hover{
+    background-color: #5058ca;
+    box-shadow: 1px 1px 5px #5058ca;
+}
+.reset_btn:hover{
+    box-shadow: 1px 1px 5px #777;
+}
+.error-small{
+    font-size: 12px;
+    color: #f00;
+    margin-top: 0; 
+    padding-left: 20px;
+}
+
+.input_box input:focus{
+    outline: none;
+}
+.input_box label{
+    position: absolute;
+    transform: translate(10px, 10px) scale(1);
+    background-color: #fff;
+    opacity: 0.6;
+    z-index: 5;
+}
+.deparment_modal{
+    display: none;
+    width: 100px;
+}
+.close_button:hover .bx-x.salom{
+   animation: close 0.7s ;
+}
+.create_body_list{
+    padding: 20px;
+    margin: 0 30px;
+    background-color: rgb(255, 250, 240);
+}
+.create_list_table{
+    list-style: none;
+    margin: 0;
+}
+.create_list_table .li{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.edit_box{
+    display: flex;
+    width: 70px;
+}
+.edit_box button{
+    width: 30px;
+    height: 30px;
+}
+.edit_box .edit_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(220, 220, 250);
+    border-radius: 4px;
+}
+.edit_box .delete_list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(250, 220, 220);
+    border-radius: 4px;
+    margin-left: 10px;
+}
+.delete_list i{
+    color: #f44;
+    font-size: 24px;
+}
+.edit_btn i{
+    color: #3c44b1;
+    font-size: 20px;
+}
+
+@keyframes close {
+    25%{
+        transform: rotateZ(30deg);
+    }
+    50%{
+        transform: rotateZ(-30deg);
+    }
+    75%{
+        transform: rotateZ(20deg);
+    }
+    100%{
+        transform: rotateZ(-20deg);
+    }
+}
+/* action class */
+label.label{
+    background-color: #fff;
+    transform: translate(-8px, -19px) scale(0.75);
+    transition: 0.4s ease;
+    opacity: 1;
+    color: #3c44b1;
+}
+.input_box.active{
+    border: 2px solid #3c44b1;
+}
+.mar-l{
+    margin-left: 50px;
+}
+.d-none{
+    display: none;
+}
+.d-block{
+    display: block;
+}
+.opacity{
+    opacity: 0.6;
+}
