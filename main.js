@@ -1,6 +1,20 @@
 const addButton = document.querySelector('#add-button');
 const modal = document.querySelector('.modal-box');
 const closeBtn = document.querySelector('.close_button');
+const fullName = document.getElementById('fullname');
+const email = document.getElementById('email');
+const phone = document.getElementById('mobile');
+const city = document.getElementById('city');
+let inputGrup = document.querySelectorAll('.input-grup');
+const inputbek = document.getElementById('inputbek');
+let inputValue = document.getElementById('inputbek-value');
+const deparmentModal = document.querySelector('.deparment_modal');
+const dep = document.querySelectorAll('.dep');
+const deleteYes = document.querySelector('.yes');
+const deleteNo = document.querySelector('.no');
+const alertSec = document.querySelector('.delete_list_modal');
+
+
 addButton.addEventListener('click', ()=>{
     modal.classList.add('d-block')
 });
@@ -8,13 +22,20 @@ addButton.addEventListener('click', ()=>{
 closeBtn.addEventListener('click', ()=>{
     modal.classList.remove('d-block');
 });
-const fullName = document.getElementById('fullname');
-const email = document.getElementById('email');
-const phone = document.getElementById('mobile');
-const city = document.getElementById('city');
-let inputGrup = document.querySelectorAll('.input-grup');
 
+inputbek.addEventListener('click', ()=>{
+    deparmentModal.classList.remove('d-none');
+    deparmentModal.classList.toggle('d-block');
+});
 
+dep.forEach(item =>[
+    item.addEventListener('click', (e)=>{
+        inputValue.innerText = "";
+        inputValue.innerText = e.target.innerText;
+        inputValue.style.opacity = "1";
+        deparmentModal.classList.add('d-none');
+    })
+])
 // submit btn
 const submitBtn = document.querySelector('.submit_btn');
 
@@ -36,6 +57,7 @@ submitBtn.addEventListener('click', (e) =>{
         email: email.value,
         phoneNumber: phone.value,
         liveLocation: city.value,
+        deparment: inputValue.innerText,
 
     }
     count++;
@@ -50,11 +72,12 @@ function addListFunc(array){
     array.forEach(item =>{
         let li = document.createElement('li');
         li.className = 'li';
+        li.id = item.id;
         li.innerHTML = `
             <span class="f_name">${item.fullName}</span>
             <span class="email_item">${item.email}</span>
             <span class="phone_number">${item.phoneNumber}</span>
-            <span class="department_item">${item.liveLocation}</span>
+            <span class="department_item">${item.deparment}</span>
             <div class="edit_box">
             <button class="edit_btn"><i class='bx bx-pencil'></i></button>
             <button class="delete_list"><i class='bx bx-x'></i></button>
@@ -65,23 +88,24 @@ function addListFunc(array){
     sortFunction(array);
 }
 
+deleteNo.addEventListener('click', ()=>{
+    alertSec.classList.remove('d-block');
+})
 
-function sortFunction(item){
-    let bodyList = document.querySelectorAll('.li');
+function sortFunction(){
     let deleteList = document.querySelectorAll('.delete_list');
     deleteList.forEach(item =>{
-        console.log(item);
         item.addEventListener('click', () =>{
-            item.parentElement.parentElement.classList.add('d-none');
+            alertSec.classList.add('d-block');
+            deleete(item.parentElement.parentElement)
         })
     })
-    console.log(bodyList);
-    let newListItem = item.filter(element =>{
-        bodyList.forEach(el =>{
-            if(element.email !== el.email) {
-                return item
-            }
-        })
+
+}
+
+function deleete(element){
+    deleteYes.addEventListener('click', ()=>{
+        element.classList.add('d-none');
+        alertSec.classList.remove('d-block');
     })
-    console.log(newListItem);
 }
