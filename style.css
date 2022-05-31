@@ -275,6 +275,9 @@ body{
     opacity: 0.6;
     z-index: 5;
 }
+.deparment-input.opacity{
+    opacity: 1;
+}
 .deparment_modal{
     display: none;
     position: absolute;
@@ -313,6 +316,7 @@ body{
     margin: 0 30px;
 }
 .create_list_table{
+    padding-left: 10px;
     list-style: none;
     margin: 0;
 }
@@ -356,7 +360,6 @@ body{
     font-size: 20px;
 }
 .delete_list_modal{
-    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -400,6 +403,9 @@ body{
     flex-shrink: 0;
     user-select: none;
     color: #f44;
+}
+.salom{
+    pointer-events: none;
 }
 .hash6{
     width: 100%;
@@ -457,6 +463,7 @@ label.label{
     opacity: 1;
     color: #3c44b1;
 }
+
 .input_box.active{
     border: 2px solid #3c44b1;
 }
@@ -466,9 +473,8 @@ label.label{
 .d-none{
     display: none;
 }
+
 .d-block{
     display: block;
 }
-.opacity{
-    opacity: 0.6;
-}
+

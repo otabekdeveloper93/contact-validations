@@ -1,111 +1,152 @@
-const addButton = document.querySelector('#add-button');
-const modal = document.querySelector('.modal-box');
-const closeBtn = document.querySelector('.close_button');
-const fullName = document.getElementById('fullname');
-const email = document.getElementById('email');
-const phone = document.getElementById('mobile');
-const city = document.getElementById('city');
-let inputGrup = document.querySelectorAll('.input-grup');
-const inputbek = document.getElementById('inputbek');
-let inputValue = document.getElementById('inputbek-value');
-const deparmentModal = document.querySelector('.deparment_modal');
-const dep = document.querySelectorAll('.dep');
-const deleteYes = document.querySelector('.yes');
-const deleteNo = document.querySelector('.no');
-const alertSec = document.querySelector('.delete_list_modal');
+const newArray = [];
+
+const elModal = document.querySelector('.modal-box');
+const elModalForm = document.querySelector('.formbox');
+const elCloseModalBtn = document.querySelector('.close_button');
+const elInputGroup = document.querySelectorAll('.input-grup');
+const elUllist = document.querySelector('.create_list_table');
+const elDeleteModal = document.querySelector('.delete_list_modal');
+const elBtnYes = document.querySelector('.yes')
 
 
-addButton.addEventListener('click', ()=>{
-    modal.classList.add('d-block')
-});
+const newArrayInput = Array.from(elInputGroup);
 
-closeBtn.addEventListener('click', ()=>{
-    modal.classList.remove('d-block');
-});
+function closeModal(){
+    elModal.classList.remove('d-block');
+    elModalForm.reset();
+}
 
-inputbek.addEventListener('click', ()=>{
-    deparmentModal.classList.remove('d-none');
-    deparmentModal.classList.toggle('d-block');
-});
+function addBtnFunc(){
+    elModal.classList.add('d-block');
+}
+// department modal display
+const elDeparmentModal = document.querySelector('.deparment_modal');
+const elDep = document.querySelectorAll('.dep');
+const elDepInput = document.querySelector('#deparment-input');
 
-dep.forEach(item =>[
-    item.addEventListener('click', (e)=>{
-        inputValue.innerText = "";
-        inputValue.innerText = e.target.innerText;
-        inputValue.style.opacity = "1";
-        deparmentModal.classList.add('d-none');
+const depArray = Array.from(elDep);
+depArray.forEach(item =>{
+    item.addEventListener('click', (event)=>{
+        elDepInput.value = event.target.textContent;
+        elDepInput.classList.add('opacity')
     })
-])
-// submit btn
-const submitBtn = document.querySelector('.submit_btn');
-
-inputGrup.forEach(item =>{
-    item.addEventListener('click', ()=> {
-        item.parentElement.firstElementChild.classList.add('label');
-        item.parentElement.classList.add('active');
+})
+function departmentFunction(){
+    elDeparmentModal.classList.toggle('d-block');
+}
+// label effect here
+newArrayInput.forEach(item =>{
+    item.addEventListener('click', ()=>{
+        item.previousElementSibling.classList.add('label')
     })
-});
+    item.addEventListener('keyup', ()=>{
+        item.previousElementSibling.classList.add('label')
+    })
+})
 
-let count = 1;
+// create List, object and object unshift array;
 
-submitBtn.addEventListener('click', (e) =>{
+elModalForm.addEventListener('submit', (e)=>{
     e.preventDefault();
-    let newArray = [];
-    let obj = {
-        id: count,
-        fullName: fullName.value,
-        email: email.value,
-        phoneNumber: phone.value,
-        liveLocation: city.value,
-        deparment: inputValue.innerText,
-
+    const elFullnameValue = elModalForm.querySelector('#fullname').value.trim();
+    const elEmailValue = elModalForm.querySelector('#email').value.trim();
+    const elPhoneValue = elModalForm.querySelector('#mobile').value.trim();
+    const elCityValue = elModalForm.querySelector('#city').value.trim();
+    const elDepValue = elModalForm.querySelector('#deparment-input').value.trim();
+    const elDateValue = elModalForm.querySelector('#hire-date').value.trim();
+    if(elFullnameValue && elEmailValue && elPhoneValue && elCityValue && elDepValue && elDateValue != false){
+        const obj = {
+            fullName: elFullnameValue,
+            email: elEmailValue,
+            phone: elPhoneValue,
+            city: elCityValue,
+            deparment: elDepValue,
+            date: elDateValue,
+            id: (Math.random().toFixed(4)*10000)
+        }
+        newArray.push(obj);
     }
-    count++;
-    newArray.push(obj);
-    addListFunc(newArray);
-    modal.classList.remove('d-block');
-})
-let arr2 = [];
-const ulList = document.querySelector('.create_list_table');
-
-function addListFunc(array){
-    array.forEach(item =>{
-        let li = document.createElement('li');
-        li.className = 'li';
-        li.id = item.id;
-        li.innerHTML = `
-            <span class="f_name">${item.fullName}</span>
-            <span class="email_item">${item.email}</span>
-            <span class="phone_number">${item.phoneNumber}</span>
-            <span class="department_item">${item.deparment}</span>
-            <div class="edit_box">
-            <button class="edit_btn"><i class='bx bx-pencil'></i></button>
-            <button class="delete_list"><i class='bx bx-x'></i></button>
-            </div>
-        `;
-        ulList.appendChild(li);
-    })
-    sortFunction(array);
-}
-
-deleteNo.addEventListener('click', ()=>{
-    alertSec.classList.remove('d-block');
+    elUllist.innerHTML = "";
+    addPersonList();
+    closeModal();
+    elModalForm.reset();
+    editListFunc()
 })
 
-function sortFunction(){
-    let deleteList = document.querySelectorAll('.delete_list');
-    deleteList.forEach(item =>{
-        item.addEventListener('click', () =>{
-            alertSec.classList.add('d-block');
-            deleete(item.parentElement.parentElement)
+// create object function
+
+
+// create List dom 
+function addPersonList(){
+    if(newArray != []){
+        newArray.forEach(item => {
+            const {fullName,email,phone,deparment,id} = item;
+            const li = document.createElement('li');
+            li.className = 'li'
+            li.innerHTML = `
+            <span>${fullName}</span>
+            <span>${email}</span>
+            <span>${phone}</span>
+            <span>${deparment}</span>
+            <span class="edit_box">
+              <button class="edit_btn" data-set="${id}">
+                <i class="bx bx-edit-alt"></i>
+              </button>
+              <button onclick="deleteListBtn(${id})" class="delete_list">
+                <i class="bx bx-x"></i>
+              </button>
+            </span>
+            `;
+            elUllist.prepend(li);  
         })
-    })
-
+    }
 }
 
-function deleete(element){
-    deleteYes.addEventListener('click', ()=>{
-        element.classList.add('d-none');
-        alertSec.classList.remove('d-block');
+//  delete list start
+
+function deleteListBtn(id){
+    elDeleteModal.classList.remove('d-none');
+    elBtnYes.dataset.set = id; 
+}
+
+function cancelFunc(){
+    elDeleteModal.classList.add('d-none');
+}
+
+elBtnYes.addEventListener("click", () => {
+    let btnData = +elBtnYes.dataset.set;
+    const arrayIndex = newArray.findIndex(obj =>{
+        return obj.id == btnData;
+    });
+    newArray.splice(arrayIndex,1);
+    elUllist.innerHTML = "";
+    addPersonList();
+    cancelFunc()
+})
+
+// delete List End
+
+function editListFunc(){
+    const editList = Array.from(document.querySelectorAll(".edit_btn"));
+    editList.forEach(editbtn => {
+        editbtn.addEventListener('click', () =>{
+            let editBtnDataId = +editbtn.dataset.set;
+            addBtnFunc();
+            const arrayItem = newArray.filter(obj =>{
+                return obj.id === editBtnDataId;
+            });
+            let newArrayItem = arrayItem[0];
+            const {fullName,email,phone,city,deparment,date} = newArrayItem;
+            elModalForm.querySelector('#fullname').value = fullName;
+            elModalForm.querySelector('#email').value = email;
+            elModalForm.querySelector('#mobile').value = phone;
+            elModalForm.querySelector('#city').value = city;
+            elModalForm.querySelector('#deparment-input').value = deparment;
+            elModalForm.querySelector('#hire-date').value = date;
+            let arrayIndex = newArray.findIndex(element =>{
+                return element.id == editBtnDataId;
+            });
+            newArray.splice(arrayIndex,1);
+        });
     })
 }

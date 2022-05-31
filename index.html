@@ -72,7 +72,7 @@
                         <input name="search" type="search">
                       </div>
                       <div class="add_modal">
-                          <button class="add_button" id="add-button">
+                          <button class="add_button" onclick="addBtnFunc()" id="add-button">
                               <i class='bx bx-plus'> </i> Add New
                           </button>
                       </div>
@@ -98,11 +98,15 @@
             </div>
         </div>
     </section>
+
+    <!--======== modal box ========-->
     <section class="modal-box">
       <div class="modall">
         <div class="modal-header">
           <h4>Employee Form</h4>
-          <button class="close_button"><i class='bx bx-x salom' ></i></button>
+          <button onclick="closeModal()" class="close_button">
+            <i class='bx bx-x salom' ></i>
+          </button>
         </div>
         <form class="formbox">
           <div class="bigbox">
@@ -124,7 +128,7 @@
               <div class="mb-3 mar-l">
                 <div class="input_box">
                   <label for="phone">Mobile</label>
-                  <input class="input-grup" type="number" name="phone" id="mobile" value="">
+                  <input class="input-grup" type="number" name="phone" id="mobile">
                 </div>
                 <p class="error-small d-none">This field is required.</p>
               </div>
@@ -151,11 +155,12 @@
                     Other
                   </label>
               </div>
-              <div class="input_box mb-3" id="inputbek">
-                <label id="inputbek-value">Department</label>
+              <div class="input_box mb-3" onclick="departmentFunction()" id="inputbek">
+                <label for="deparment">Deparment</label>
+                <input class="input-grup" type="text" name="deparment" id="deparment-input">
                 <p class="indicator-text-modal"></p>
                 <div class="deparment_modal">
-                  <ul >
+                  <ul>
                     <li class="dep" id="none">None</li>
                     <li class="dep" id="Development">Development</li>
                     <li class="dep" id="Marketing">Marketing</li>
@@ -182,7 +187,8 @@
         </form>
       </div>
     </section>
-    <div class="delete_list_modal">
+    <!-- ============ modal box =========== -->
+    <div class="delete_list_modal d-none">
       <div class="delete_container">
         <div class="soroq">
           <div>
@@ -196,7 +202,7 @@
           <h6>You can't undo this operation</h6>
         </div>
         <div class="yes-no">
-          <button class="no">No</button>
+          <button class="no" onclick="cancelFunc()">No</button>
           <button class="yes">Yes</button>
         </div>
       </div>
